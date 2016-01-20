@@ -12,28 +12,29 @@ var Game = React.createClass({
       tile.toggleFlag();
     } else {
       tile.explore();
-      var popup;
-      var headTag;
-      if (this.state.board.lost()) {
-        document.getElementById('modal').className = "modal is-active";
-        document.getElementById('modal-content').innerHTML = document.createElement("h2").innerText = "YOU LOSE!";
-        document.getElementById('restart-game').addEventListener('click', this.restartGame);
-      } else if (this.state.board.won()) {
-        document.getElementById('modal').className = "modal is-active";
-        document.getElementById('modal-content').innerHTML = document.createElement("h2").innerText = "YOU WIN!";
-        document.getElementById('restart-game').addEventListener('click', this.restartGame);
-      }
-
     }
     this.setState({board: this.state.board});
   },
   restartGame: function () {
-    document.getElementById('modal').className = "modal";
     this.setState({board: new Minesweeper.Board(9, 9)});
   },
   render: function () {
+    var modal = "";
+    if (this.state.board.lost() || this.state.board.won()) {
+      var text = this.state.board.won() ? "You won!" : "You lost!";
+      modal = 
+        <div className='modal is-active'>
+          <div className='modal-content'>
+            <p>{text}</p>
+            <button className='modal-button' onClick={this.restartGame}>Play Again</button>
+          </div>
+        </div>
+    }    
     return(
-      <Board gameBoard={this.state.board} updateGame={this.updateGame}/>
+      <div>
+        {modal}
+        <Board board={this.state.board} updateGame={this.updateGame}/>
+      </div>
     );
   }
 });

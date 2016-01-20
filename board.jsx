@@ -3,7 +3,7 @@ var Tile = require('./tile');
 
 var Board = React.createClass({
   render: function () {
-    var boardTiles = this.props.gameBoard.grid.map(function(r, i) {
+    var boardTiles = this.props.board.grid.map(function(r, i) {
       var rowTiles = r.map(function(t, j) {
         return(
           <Tile key={j} updateGame={this.props.updateGame} tile={t} />

@@ -1,3 +1,7 @@
+body {
+font-family: Menlo, sans-serif;
+background: white;
+}
 h1 {
   margin: auto;
   text-align: center;
@@ -5,15 +9,15 @@ h1 {
 }
 
 #main {
-  width: 198px;
+  width: 396px;
   margin: auto;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 .row {
   display: block;
-  width: 198px;
-  height: 22px;
+  width: 396px;
+  height: 44px;
 }
 
 .row:after {
@@ -23,24 +27,37 @@ h1 {
 }
 
 .tile {
-  text-align: center;
-  font-weight: bold;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   float: left;
   border-style: outset;
-  background: darkgrey;
-  border: 1px solid black;
+  background: rgba(150, 150, 150, 0.7);
+
+  border: 2px solid black;
+  text-align: center;
+
+}
+
+.tile p {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 0;
+  margin-top: 20px;
+  
+  
 }
 
 .tile.explored {
   border-style: inset;
-  background: lightgrey;
+  background: rgba(210, 210, 210, .5);
+
 }
 
-.tile.flagged {
-  color: red;
+.tile.flagged p {
+  font-size: 30px;
+  
+  color: tomato;
 }
 
 .modal {
@@ -56,18 +73,28 @@ h1 {
   z-index: 1000;
   text-align: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 50px;
   top: 50%;
   left: 50%;
   width: 400px;
-  padding: 50px;
-  margin-left: -250px;
+  padding: 50px 0;
+  margin-left: -200px;
   transform: translateY(-50%);
-  background: white;
+  background: rgba(225, 225, 225, 0.8);
+
   border: 5px solid black;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 
 .modal-button {
   z-index: 1001;
+  background: tomato;
+  color: white;
+  font-family: Menlo;
+  font-size: 20px;
+  width: 140px;
+  height: 50px;
+  border-style: none;
+  font-weight: 400;
+  display: inline-block;
 }

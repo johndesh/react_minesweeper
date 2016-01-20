@@ -2,36 +2,38 @@ var React = require('react');
 
 var Tile = React.createClass({
 
+
   handleClick: function (e) {
+    
     this.props.updateGame(this.props.tile, e.altKey);
   },
 
   render: function () {
-    var tileSymbol = "";
-    var tileClasses = "tile";
-    var exploredTile = this.props.tile.explored;
-    if (this.props.tile.bombed) {
-      tileClasses = tileClasses + " bombed";
-
-      tileSymbol = this.props.tile.explored ?  "X" : "";
-
-    } else if (exploredTile) {
-      tileClasses = tileClasses + " explored";
-      tileSymbol = (this.props.tile.adjacentBombCount() > 0 ? this.props.tile.adjacentBombCount() : "");
-
-    } else if (this.props.tile.flagged) {
-      tileClasses = tileClasses + " flagged";
-      tileSymbol = "⚑";
-    }
-    if (exploredTile) {
-      return(
-        <div className={tileClasses}>{tileSymbol}</div>
-      );
+    var tile = this.props.tile;
+    var klass, token, count;
+     
+    if (tile.explored) {
+      if (tile.bombed) {
+        klass = 'bombed';
+        token = '💣';
+      } else {
+        klass = 'explored';
+        count = tile.adjacentBombCount();
+        token = (count > 0 ? count : ' ');
+      }
+    } else if (tile.flagged) {
+      klass = 'flagged';
+      token = '⚑';
     } else {
-      return(
-        <div className={tileClasses} onClick={this.handleClick}>{tileSymbol}</div>
-      );
+      token = ' ';
     }
+
+    klass = 'tile ' + klass;
+
+    return(
+      <div className={klass} onClick={this.handleClick}><p>{token}</p></div>
+    );
+
   }
 });
 

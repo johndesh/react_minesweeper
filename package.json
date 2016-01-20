@@ -1,11 +1,12 @@
 {
   "name": "minesweeper",
   "version": "1.0.0",
-  "description": "",
+  "description": "minesweeper",
   "main": "minesweeper.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "bundle.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
